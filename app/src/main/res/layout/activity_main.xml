@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sty.echarts.MainActivity" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_histogram_by_js"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="柱状图(从js加载数据)" />
+            <WebView
+                android:id="@+id/wv_histogram_by_js"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/btn_histogram_by_android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="柱状图(在java代码中加载数据)" />
+            <com.sty.echarts.view.EChartsWebView
+                android:id="@+id/wv_histogram_by_android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <style>
+        html,body{
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        scroll:no;
+        padding:0;
+        margin:0;
+        }
+        #main{
+
+           padding:0px;
+        margin:0 auto;
+           width:100%;height:100%;overflow:hidden;scroll:no;
+        }
+    </style>
+
+    <!-- ECharts单文件引入 -->
+    <script src="./js/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main"></div>
+
+<script type="text/javascript">
+
+    /* click事件的参数params对象属性大全
+    // 当前点击的图形元素所属的组件名称，
+    // 其值如 'series'、'markLine'、'markPoint'、'timeLine' 等。
+    //componentType: string,
+    // 系列类型。值可能为：'line'、'bar'、'pie' 等。当 componentType 为 'series' 时有意义。
+    //seriesType: string,
+    // 系列在传入的 option.series 中的 index。当 componentType 为 'series' 时有意义。
+    //seriesIndex: number,
+    // 系列名称。当 componentType 为 'series' 时有意义。
+    //seriesName: string,
+    // 数据名，类目名
+    //name: string,
+    // 数据在传入的 data 数组中的 index
+    //dataIndex: number,
+    // 传入的原始数据项
+    //data: Object,
+    // sankey、graph 等图表同时含有 nodeData 和 edgeData 两种 data，
+    // dataType 的值会是 'node' 或者 'edge'，表示当前点击在 node 还是 edge 上。
+    // 其他大部分图表中只有一种 data，dataType 无意义。
+    //dataType: string,
+    // 传入的数据值
+    //value: number|Array
+    // 数据图形的颜色。当 componentType 为 'series' 时有意义。
+    //color: string
+    */
+
+
+    var worldMapContainer = document.getElementById('main');
+
+    //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+    var resizeWorldMapContainer = function () {
+        worldMapContainer.style.width = window.innerWidth+'px';
+        worldMapContainer.style.height = window.innerHeight+'px';
+    };
+    //设置容器高宽
+    resizeWorldMapContainer();
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+    function setOption(option){
+        myChart.setOption(option);
+        //用于使chart自适应高度和宽度
+        window.onresize = function () {
+            //重置容器高宽
+            resizeWorldMapContainer();
+            myChart.resize();
+        };
+
+        //'click'，'dblclick'，'mousedown'，'mouseup'，'mouseover'，'mouseout'，'globalout'。
+        myChart.on('click',function(params){
+            //点击事件，
+            window.clickEvent.onClick(params.componentType,params.seriesType,params.seriesIndex,params.dataIndex,params.data,params.color);
+        });
+
+        myChart.on('dblclick',function(params){
+            //双击事件，
+            window.clickEvent.onDoubleClick(params.componentType,params.seriesType,params.seriesIndex,params.dataIndex,params.data,params.color);
+        });
+
+        myChart.on('mouseover',function(params){
+            //移入事件，
+            window.clickEvent.mouseover(params.componentType,params.seriesType,params.seriesIndex,params.dataIndex,params.data,params.color);
+        });
+
+        myChart.on('mouseout',function(params){
+            //移出事件，
+            window.clickEvent.mouseout(params.componentType,params.seriesType,params.seriesIndex,params.dataIndex,params.data,params.color);
+        });
+
+    }
+
+    function select(cur,select){
+        myChart.dispatchAction({
+            type: 'downplay',
+            seriesIndex: 0,
+            dataIndex: cur
+        });
+        myChart.dispatchAction({
+            type: 'highlight',
+            seriesIndex: 0,
+            dataIndex: select
+        });
+
+        myChart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: select
+        });
+    }
+
+    function clear(){
+        myChart.clear();
+    }
+
+</script>
+</body>
+</html>
