@@ -18,21 +18,73 @@
                 android:id="@+id/btn_histogram_by_js"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:text="柱状图(从js加载数据)" />
             <WebView
                 android:id="@+id/wv_histogram_by_js"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="400dp"
+                android:layout_marginBottom="80dp"/>
 
             <Button
                 android:id="@+id/btn_histogram_by_android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:text="柱状图(在java代码中加载数据)" />
             <com.sty.echarts.view.EChartsWebView
                 android:id="@+id/wv_histogram_by_android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="400dp"
+                android:layout_marginBottom="80dp"/>
+
+            <Button
+                android:id="@+id/btn_line_by_js"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="折线图(从js加载数据)" />
+            <WebView
+                android:id="@+id/wv_line_by_js"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="80dp"/>
+
+            <Button
+                android:id="@+id/btn_line_by_android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="折线图(在java代码中加载数据)" />
+            <com.sty.echarts.view.EChartsWebView
+                android:id="@+id/wv_line_by_android"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="80dp"/>
+
+            <Button
+                android:id="@+id/btn_pie_by_js"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="饼状图(从js加载数据)" />
+            <WebView
+                android:id="@+id/wv_pie_by_js"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="80dp"/>
+
+            <Button
+                android:id="@+id/btn_pie_by_android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="饼状图(在java代码中加载数据)" />
+            <com.sty.echarts.view.EChartsWebView
+                android:id="@+id/wv_pie_by_android"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="80dp"/>
         </LinearLayout>
     </ScrollView>
 

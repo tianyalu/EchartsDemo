@@ -21,20 +21,15 @@
     <div id="main" style="width: 360px;height:400px;"></div>
 
     <script type="text/javascript">
-        //用于使chart自适应高度和宽度，通过窗体高宽计算容器高宽
-        var resizeWorldMapContainer = function(){
-            w
-        }
-    </script>
-
-    <script type="text/javascript">
         var xName = [ '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月' ]; //x轴数据显示数据
         var yname = [ 100.5, 123, 86.5, 58.9, 90, 92.4, 88.7, 69.2, 98, 75, 97.8, 109 ]; // 已关控
         var wname = [ 50, 48, 55, 99, 100, 98.9, 87.3, 55, 83, 59, 68, 88 ]; //未管控
         var lengend = [ '话费', '流量' ];
         var sum = [ 80, 80, 80, 80, 80, 80, 80, 80, 80, 80 ];
-        var barwidth = 60;
-        function createBarLineChart() {
+        var barwidth = 50;
+
+        //-------------------------------------直方图------------------------------------------------
+        function createBarChart() {
             var myChart = echarts.init(document.getElementById('main'));
             var option = {
                 legend : { // 图例的样式
@@ -55,32 +50,34 @@
                             fontSize : 16,
                          },
                 },
-                grid : { //设置图标在div中的位置
-                    left : '2%',
+                grid : { //设置图表在div中的位置
+                    left : '2%', //网格线据容器左边距离
                     right : '2%',
                     bottom : '3%',
-                    show : false,
-                    containLabel : true
-                    // 是否包含标题
+                    show : false, //是否显示直角坐标系网格
+                    containLabel : true // 是否包含坐标轴当刻度标签（true 防止标签溢出）
                 },
-                tooltip : {
-                    show : true,
+                tooltip : {  //是否显示提示框组件，包括提示框浮层和 axisPointer
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
                 },
                 xAxis : [ {
                     type : 'category',
                     data : xName,
-                    boundaryGap : true, // 值是在中间还在在原点
+                    boundaryGap : true, // 值是在中间还是在原点
                     axisLine : {
                         lineStyle : {
                             color : 'black'
                         },
                         show : true
-                    }, //x轴 的颜色
+                    },
                     axisTick : {
-                        show : false
-                    }, // 是否加上x轴的小柱柱
+                        show : false //是否显示坐标轴刻度
+                    },
                     axisLabel : {
-                        interval : 0,
+                        interval : 0,  //x轴标签显示间隔数
                         rotate : 0, //字体倾斜
                         textStyle : {
                             color : 'black', // x轴的颜色
@@ -94,7 +91,7 @@
                 series : [ {
                     name : lengend[0],
                     type : 'bar', // line表示线图 bar表示柱图
-                    stack : '管控',
+                    stack : '管控', //数据堆叠，同个类目轴上系列配置相同的stack值可以堆叠放置
                     barWidth : barwidth,
                     data : yname,
                     label : { // 设置数据是否显示
@@ -122,6 +119,150 @@
                         }
                     },
                 }],
+            };
+            myChart.setOption(option);
+        }
+
+        //-----------------------------------------折线图--------------------------------------------
+        function createLineChart() {
+            var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                legend : { // 图例的样式
+                    show : true,
+                    orient : 'horizontal',
+                    itemGap : 50, // 图例之间的距离
+                    itemHeight : 10, // 图例的高度
+                    data : [ {
+                                name : lengend[0],
+                                icon : "rectangle"
+                            },
+                            {
+                                name : lengend[1],
+                                icon : "rectangle"
+                            } ],
+                    textStyle : {
+                            color : 'black',
+                            fontSize : 16,
+                         },
+                },
+                grid : { //设置图表在div中的位置
+                    left : '2%', //网格线据容器左边距离
+                    right : '2%',
+                    bottom : '3%',
+                    show : false, //是否显示直角坐标系网格
+                    containLabel : true // 是否包含坐标轴当刻度标签（true 防止标签溢出）
+                },
+                tooltip : {  //是否显示提示框组件，包括提示框浮层和 axisPointer
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                xAxis : [ {
+                    type : 'category',
+                    data : xName,
+                    boundaryGap : true, // 值是在中间还是在原点
+                    axisLine : {
+                        lineStyle : {
+                            color : 'black'
+                        },
+                        show : true
+                    },
+                    axisTick : {
+                        show : false //是否显示坐标轴刻度
+                    },
+                    axisLabel : {
+                        interval : 0,  //x轴标签显示间隔数
+                        rotate : 0, //字体倾斜
+                        textStyle : {
+                            color : 'black', // x轴的颜色
+                            fontSize : '14'
+                        }
+                    }
+                } ],
+                yAxis : [ {
+                    type : 'value'
+                } ],
+                series : [ {
+                    name : lengend[0],
+                    type : 'line', // line表示线图 bar表示柱图
+                    smooth: true,
+                    data : yname,
+                    label : { // 设置数据是否显示
+                        normal : {
+                            show : true,
+                            position : 'top',
+                            textStyle : {
+                                color : "black"
+                            }
+                        }
+                    }
+                }, {
+                    name : lengend[1],
+                    type : 'line',
+                    smooth: true,
+                    data : wname,
+                    label : {
+                        normal : {
+                            show : true,
+                            position : 'bottom',
+                            textStyle : {
+                                color : "black"
+                            }
+                        }
+                    },
+                }],
+            };
+            myChart.setOption(option);
+        }
+
+        //-----------------------------------------饼状图--------------------------------------------
+       function genData(){
+            var seriesData = [];
+            for (var i = 0; i < 12; i++) {
+                seriesData.push({
+                    name: xName[i],
+                    value: yname[i]
+                });
+            }
+
+            return seriesData;
+        }
+
+        function createPieChart() {
+            var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                title: {
+                    text: '12个月手机话费占比图',
+                    left: 'center',
+                    top: 20
+                },
+                legend : { // 图例的样式
+                    type: 'scroll',
+                    orient : 'vertical',
+                    right: 10,
+                    top: 20,
+                    bottom: 20,
+                    data : xName
+                },
+                tooltip : {  //是否显示提示框组件，包括提示框浮层和 axisPointer
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)" //饼图、雷达图 : a（系列名称），b（数据项名称），c（数值）, d（百分比）
+                },                                         //https://blog.csdn.net/mxdmojingqing/article/details/77340245
+                series : [ {
+                    name : lengend[0],
+                    type : 'pie', // line表示线图 bar表示柱图 pie表示饼状图
+                    radius: '50%', // 半径，相对于容器窄边一半的百分比
+                    center: ['40%', '50%'],  //圆心位置相对于容器的百分比
+                    data : genData(),
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }]
             };
             myChart.setOption(option);
         }

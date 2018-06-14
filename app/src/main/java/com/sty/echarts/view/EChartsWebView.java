@@ -136,7 +136,7 @@ public class EChartsWebView extends WebView {
         };
 
         addJavascriptInterface(clickEvent, "clickEvent");
-        loadUrl("file:///android_asset/index.html");
+        loadUrl("file:///android_asset/echarts/index.html");
 
         setWebViewClient(new WebViewClient(){
             @Override
