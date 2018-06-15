@@ -4,7 +4,7 @@
 下面给几张截图一睹为快：<br>
 ![图一](https://github.com/tianyalu/EchartsDemo/blob/master/app/src/main/screenShots/1.png?raw=true)<br>
 ![图二](https://github.com/tianyalu/EchartsDemo/blob/master/app/src/main/screenShots/2.png?raw=true)<br>
-![图三](https://github.com/tianyalu/EchartsDemo/blob/master/app/src/main/screenShots/3.png?raw=true)<br>
+![图三](https://github.com/tianyalu/EchartsDemo/raw/master/screenShots/3.png<br>
 参考资料：<br>
 http://echarts.baidu.com/<br>
 https://gitee.com/free/ECharts<br>
