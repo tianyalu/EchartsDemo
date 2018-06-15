@@ -2,7 +2,9 @@
 百度EChart在Android上的demo（为百度EChart的开发者们点赞，真的是大神的杰作啊！）<br>
 采用guozilan大神的abel533/ECharts针对ECharts3.x(2.x)版本的Java类库，实现在Android上Echarts的demo，包括柱状图，折线图和饼状图，分别展示了从JS文件加载数据和用JAVA代码组装数据。<br>
 下面给几张截图一睹为快：<br>
-![图一](https://github.com/tianyalu/EchartsDemo/screenshots/1.png)<br>
+![图一](https://github.com/tianyalu/EchartsDemo/blob/master/app/src/main/screenShots/1.png?raw=true)<br>
+![图二](https://github.com/tianyalu/EchartsDemo/blob/master/app/src/main/screenShots/2.png?raw=true)<br>
+![图三](https://github.com/tianyalu/EchartsDemo/raw/master/screenShots/3.png<br>
 参考资料：<br>
 http://echarts.baidu.com/<br>
 https://gitee.com/free/ECharts<br>
